@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 640" font-family="-apple-system,Segoe UI,Helvetica,Arial,sans-serif" role="img" aria-label="Recreated demo of a customer order journey funnel dashboard page with synthetic data">
 <rect x="0" y="0" width="1000" height="640" rx="0" fill="#e8eef5" stroke="none" stroke-width="1" />
 <rect x="8" y="8" width="184" height="624" rx="8" fill="#fff" stroke="#dfe3e8" stroke-width="1" />
-<g stroke="#12355b" stroke-width="2.5" fill="none" stroke-linejoin="round"><path d="M100 22 L128 34 L128 62 L100 74 L72 62 L72 34 Z"/><path d="M72 34 L100 46 L128 34"/><path d="M100 46 L100 74"/></g>
+<g stroke="#12355b" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="100" cy="48" r="26"/><path d="M88 42 q4 -6 8 0"/><path d="M104 42 q4 -6 8 0"/><path d="M86 54 Q100 70 114 54 Z" fill="#12355b" fill-opacity=".12"/></g><circle cx="83" cy="55" r="3.5" fill="#4aa3df" opacity=".45"/><circle cx="117" cy="55" r="3.5" fill="#4aa3df" opacity=".45"/>
 <text x="100" y="96" font-size="14" fill="#12355b" font-weight="700" text-anchor="middle" >Customer order</text>
 <text x="100" y="112" font-size="14" fill="#12355b" font-weight="700" text-anchor="middle" >journey</text>
 <text x="100" y="126" font-size="10" fill="#444" font-weight="400" text-anchor="middle" font-style="italic">Funnel analysis</text>
