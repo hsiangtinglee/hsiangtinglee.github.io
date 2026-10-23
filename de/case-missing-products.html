@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Vorhersage vermisster Produkte – Hsiangting Lee</title>
+<meta name="description" content="Fallstudie: Machine Learning zur Vorhersage vermisster Produkte bei stark unausgeglichenen Daten, mit Empfehlung und Roll-out-Plan. Synthetische Daten.">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a class="brand" href="index.html">Hsiangting Lee</a>
+  <nav>
+    <a href="index.html#cases">&larr; Alle Fallstudien</a>
+    <a class="lang" href="../case-missing-products.html">EN</a>
+  </nav>
+</div></header>
+
+<main class="wrap">
+  <div class="hero">
+    <h1>Vorhersage vermisster Produkte mit Machine Learning</h1>
+    <p class="role">Machine Learning &middot; Klassifikation bei unausgeglichenen Daten</p>
+  </div>
+
+  <p>Diese Fallstudie zeigt einen realen Fall, an dem ich gearbeitet habe, dargestellt mit synthetischen Daten.</p>
+
+  <section>
+    <h2>Problem</h2>
+    <p>Produkte und Materialien können aus vielen Gründen verloren gehen (z.&nbsp;B. in der Lieferkette, bei konzerninternen Transfers oder nach einem Transport). Diese Verluste verursachen hohe Kosten, Umtriebe oder sogar längere Durchlaufzeiten für Kundinnen und Kunden sowie für das Unternehmen.</p>
+    <figure><img src="../assets/sketch_problem_de.svg" alt="Cartoon: Auf dem Lagerregal fehlt eine Kiste. Der Lagermitarbeiter ist besorgt und fragt, wo sie ist, während ein Dieb grinsend mit der Kiste davonrennt."><figcaption>Ohne Vorhersage: Das Material ist weg, der Lagermitarbeiter sucht und der Dieb freut sich.</figcaption></figure>
+  </section>
+
+  <section>
+    <h2>Daten</h2>
+    <p>Historische Produktdaten aus einem Jahr. Für diese Darstellung wird ein synthetischer Datensatz mit 200&#8217;000 Produkten verwendet, von denen etwa 0,4% verloren gingen. Er bildet die Struktur des realen Problems nach, enthält aber keine seiner Werte.</p>
+  </section>
+
+  <section>
+    <h2>Vorgehen</h2>
+    <ul>
+      <li>Training einer logistischen Regression (Baseline) und eines Random Forest, um die Wahrscheinlichkeit vorherzusagen, dass ein Produkt verloren geht.</li>
+      <li>Umgang mit dem starken Klassenungleichgewicht mittels Klassengewichten.</li>
+      <li>Evaluation auf einem separaten Testdatensatz mit PR-AUC, da die Accuracy bei seltenen Ereignissen irreführend ist.</li>
+      <li>Messung von Precision und Recall für die obersten 1% und 5% der Produkte mit dem höchsten vorhergesagten Risiko, weil das die Gruppen sind, auf die das Geschäft realistisch reagieren kann.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Ergebnisse</h2>
+    <table>
+      <thead><tr><th>Modell</th><th>PR-AUC</th><th>Top 1%<br>Precision / Recall</th><th>Top 5%<br>Precision / Recall</th></tr></thead>
+      <tbody>
+        <tr><td>Zufallsmodell</td><td>0,004</td><td>0,4% / 1%</td><td>0,4% / 5%</td></tr>
+        <tr><td>Logistische Regression</td><td>0,06</td><td>8,8% / 24%</td><td>3,7% / 50%</td></tr>
+        <tr class="best"><td>Random Forest</td><td>0,22</td><td>16,8% / 46%</td><td>5,2% / 70%</td></tr>
+      </tbody>
+    </table>
+    <ul>
+      <li>Der Random Forest schneidet am besten ab. Seine obersten 1% der Risikowerte enthalten etwa 40-mal mehr vermisste Produkte als eine Zufallsauswahl.</li>
+      <li>Würde man nur die obersten 5% der Produkte prüfen, würde man etwa 70% aller Verlustfälle erfassen.</li>
+      <li>Die Precision bleibt niedrig, weil vermisste Produkte selten sind. Die meisten markierten Produkte sind daher Fehlalarme. Das ist der Preis der Vorhersage seltener Ereignisse. Die Konzentration auf eine kleine Hochrisikogruppe reduziert das Problem dennoch deutlich.</li>
+    </ul>
+    <div class="grid2">
+      <figure><img src="../assets/case1_pr_curve_de.png" alt="Precision-Recall-Kurve: Vergleich von logistischer Regression und Random Forest auf synthetischen Daten"><figcaption>Precision-Recall-Kurve (synthetische Daten)</figcaption></figure>
+      <figure><img src="../assets/case1_gains_chart_de.png" alt="Kumulative Gewinnkurve: Anteil gefundener vermisster Produkte im Verhältnis zum Anteil geprüfter Produkte"><figcaption>Kumulative Gewinnkurve: Anteil gefundener vermisster Produkte (synthetische Daten)</figcaption></figure>
+    </div>
+  </section>
+
+  <section>
+    <h2>Empfehlung</h2>
+    <p>Das Modell nutzen, um die Produkte mit dem höchsten Risiko vorherzusagen und gezielt zu behandeln.</p>
+  </section>
+
+  <section>
+    <h2>Roll-out-Plan</h2>
+    <div class="phase"><b>Phase 1 &ndash; Gezielter Pilot.</b> Gezielter Einsatz bei den obersten 1% der Produkte mit dem höchsten vorhergesagten Risiko. Erfasst werden Verlustquote, Kosten pro Massnahme und die Anzahl bearbeiteter Fehlalarme.</div>
+    <div class="phase"><b>Phase 2 &ndash; Skalieren und überwachen.</b> Ausweitung auf einen grösseren Anteil der Hochrisikoprodukte, wenn sich der Pilot lohnt. Überwacht werden Modelldrift, Precision und das Kosten-Nutzen-Verhältnis. Regelmässiges Nachtrainieren nach festem Zeitplan.</div>
+  </section>
+
+  <section>
+    <h2>Geschäftlicher Nutzen</h2>
+    <p>Die Vorhersagen ermöglichen es dem Geschäft, Verluste proaktiv zu verhindern, Ressourcen besser zu planen und den Aufwand dort einzusetzen, wo er am wichtigsten ist.</p>
+    <figure><img src="../assets/sketch_solution_de.svg" alt="Cartoon: Dank der Risikoprognose liegen alle Kisten im Regal und der Lagermitarbeiter freut sich mit erhobenem Daumen."><figcaption>Mit Vorhersage: Die Produkte mit dem höchsten Risiko werden zuerst geschützt, nichts geht verloren.</figcaption></figure>
+  </section>
+
+  <section>
+    <h2>Meine Rolle</h2>
+    <p>Ich habe das gesamte Projekt selbständig initiiert, konzipiert, umgesetzt und getestet und die Empfehlung sowie den Roll-out-Plan für das Geschäft erarbeitet.</p>
+  </section>
+
+  <section>
+    <h2>Tools</h2>
+    <ul class="chips"><li>SQL</li><li>Python</li><li>pandas</li><li>numpy</li><li>scikit-learn</li><li>matplotlib</li></ul>
+  </section>
+</main>
+
+<footer><div class="wrap">
+  Alle dargestellten Daten sind synthetisch und stammen nicht von meinem Arbeitgeber. &copy; 2026 Hsiangting Lee
+</div></footer>
+</body>
+</html>
