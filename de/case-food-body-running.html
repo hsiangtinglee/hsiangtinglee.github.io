@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ernährung, Körperzusammensetzung und Laufen (Python) – Hsiangting Lee</title>
+<meta name="description" content="Fallstudie: Explorative Analyse meiner eigenen Ernährungs-, Gewichts-, Körperfett- und Laufdaten mit Pearson-Korrelationstests und Prognosemodellen.">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a class="brand" href="index.html">Hsiangting Lee</a>
+  <nav>
+    <a href="index.html#cases">&larr; Alle Fallstudien</a>
+    <a class="lang" href="../case-food-body-running.html">EN</a>
+  </nav>
+</div></header>
+
+<main class="wrap">
+  <div class="hero">
+    <h1>Beeinflusst meine Ernährung meinen Körper und mein Laufen?</h1>
+    <p class="role">Explorative Analyse &middot; Python &middot; Statistische Tests</p>
+  </div>
+
+  <p>Gesundheit ist unser wertvollstes Gut, und fast alle müssen sich darum kümmern, ob als Unternehmerin, Elternteil, Student oder Sportler. Sport ist neben Data Science eine meiner Leidenschaften. In dieser Analyse nutze ich meine persönlichen Daten, um herauszufinden, ob es einen Zusammenhang zwischen dem, was ich esse, und meinem Körpergewicht, meiner Körperzusammensetzung sowie meiner sportlichen Leistung gibt. Wenn ich einen signifikanten Zusammenhang finde, kann ich ihn nutzen, um diese Werte zu verbessern.</p>
+
+  <section>
+    <h2>Forschungsfrage</h2>
+    <p>Hat das, was ich esse, einen positiven oder negativen Zusammenhang mit meiner Körperzusammensetzung (Gewicht und Körperfett) und meiner sportlichen Leistung (Laufgeschwindigkeit und Laufdistanz)?</p>
+  </section>
+
+  <section>
+    <h2>Daten</h2>
+    <ul>
+      <li>Ernährungseinträge aus der Tracking-App <a href="https://web.joincarbon.com/">Carbon</a></li>
+      <li>Sportdaten von <a href="https://www.garmin.com/">Garmin</a></li>
+      <li>Google-Health-Daten</li>
+      <li>Daten von 100 Tagen</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Vorgehen</h2>
+    <ol>
+      <li><b>Daten aufbereiten:</b> Daten aus verschiedenen Quellen extrahieren; Lebensmittel kategorisieren (z. B. Banane und Heidelbeere &rarr; Obst; Guetzli und Brot &rarr; Kohlenhydrate); Daten bereinigen (z. B. fehlerhafte und fehlende Werte behandeln).</li>
+      <li><b>Pearson-Korrelationstests durchführen.</b></li>
+      <li><b>Prognosemodelle erstellen.</b></li>
+      <li><b>Ergebnisse auswerten.</b></li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>Erkenntnisse</h2>
+    <p><b>1.</b> Vor 20–30 Jahren glaubten viele Menschen fälschlicherweise, dass Fett essen zu mehr Körperfett führt. Die Wissenschaft hat inzwischen gezeigt, dass das nicht stimmt, und meine Daten bestätigen es: Auch bei höherer Fettzufuhr haben mein Gewicht und mein Körperfett nicht zugenommen. Das deutet darauf hin, dass eine Zunahme von Gewicht und Körperfett von anderen Faktoren bestimmt wird, etwa vom Aktivitätsniveau und der gesamten Kalorienzufuhr.</p>
+    <figure>
+      <a href="../assets/case3_fat_vs_bodyfat_de.png"><img src="../assets/case3_fat_vs_bodyfat_de.png" alt="Liniendiagramm: wöchentliche Fettzufuhr steigt und Körperfett sinkt über 16 Wochen"></a>
+      <figcaption>Durchschnittliche Fettzufuhr und Körperfett pro Woche. Sie korrelieren (Pearson r = −0,73), verändern sich aber beide einfach mit der Zeit. Bei den Veränderungen von Woche zu Woche bleibt kein Zusammenhang. Eigene Daten, 16 Wochen.</figcaption>
+    </figure>
+    <p><b>2.</b> Es gibt keinen statistisch signifikanten Zusammenhang zwischen meiner Ernährung und meiner Laufgeschwindigkeit oder -distanz. Das widerspricht meiner Annahme: Ich dachte immer, dass mehr Kohlenhydrate oder Protein vor dem Training meine Leistung steigern würden. Meine Ergebnisse zeigen, dass die sportliche Leistung viele weitere Einflussfaktoren neben der Ernährung hat, etwa die Art des Trainings (z. B. Intervall, Dauerlauf oder Regenerationslauf). Die Treiber der Leistung herauszufinden wäre ein interessantes Thema für weitere Analysen.</p>
+  </section>
+
+  <section>
+    <h2>Tools</h2>
+    <ul class="chips"><li>SQL</li><li>Python</li><li>scikit-learn</li><li>Statistische Tests</li></ul>
+  </section>
+</main>
+
+<footer><div class="wrap">
+  Dieser Fall verwendet meine eigenen persönlichen Daten. In den anderen Fällen sind alle dargestellten Daten synthetisch und stammen nicht von meinem Arbeitgeber. &copy; 2026 Hsiangting Lee
+</div></footer>
+</body>
+</html>

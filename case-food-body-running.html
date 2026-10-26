@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Food, Body Composition and Running (Python) – Hsiangting Lee</title>
+<meta name="description" content="Case study: exploratory analysis of my own food, body weight, body fat and running data using Pearson correlation tests and prediction models.">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a class="brand" href="index.html">Hsiangting Lee</a>
+  <nav>
+    <a href="index.html#cases">&larr; All cases</a>
+    <a class="lang" href="de/case-food-body-running.html">DE</a>
+  </nav>
+</div></header>
+
+<main class="wrap">
+  <div class="hero">
+    <h1>Does What I Eat Affect My Body and My Running?</h1>
+    <p class="role">Exploratory analysis &middot; Python &middot; Statistical tests</p>
+  </div>
+
+  <p>Health is the most valuable thing we have, and almost everyone needs to look after it, whether you are an entrepreneur, a parent, a student or an athlete. Sport is one of my passions, along with data science. In this analysis, I use my personal data to find out whether there is any correlation between the food I eat and my body weight and body composition, as well as my sports performance. If I can find a significant relationship, I can use it to improve them.</p>
+
+  <section>
+    <h2>Research question</h2>
+    <p>Does the food I eat have a positive or negative relationship with my body composition (weight and body fat) and my sports performance (running speed and running distance)?</p>
+  </section>
+
+  <section>
+    <h2>Data used</h2>
+    <ul>
+      <li>Food entries from the nutrition-tracking app <a href="https://web.joincarbon.com/">Carbon</a></li>
+      <li>Sports performance data from <a href="https://www.garmin.com/">Garmin</a></li>
+      <li>Google Health data</li>
+      <li>100 days of data</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Methodology</h2>
+    <ol>
+      <li><b>Prepare data:</b> extract data from various sources; categorise foods (e.g. banana and blueberry &rarr; fruit; cookies and bread &rarr; carbohydrates); clean data (e.g. handle wrong and missing values).</li>
+      <li><b>Run Pearson correlation tests.</b></li>
+      <li><b>Build prediction models.</b></li>
+      <li><b>Evaluate the results.</b></li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>Findings</h2>
+    <p><b>1.</b> Some 20–30 years ago, many people wrongly believed that eating fat leads to more body fat. Science has since shown this to be untrue, and my data supports it: even with a higher fat intake, my weight and body fat did not increase. This indicates that increases in weight and body fat are driven by other factors, such as activity level and overall calorie intake.</p>
+    <figure>
+      <a href="assets/case3_fat_vs_bodyfat.png"><img src="assets/case3_fat_vs_bodyfat.png" alt="Line chart of weekly fat intake rising and body fat falling over 16 weeks"></a>
+      <figcaption>Weekly average fat intake and body fat. They correlate (Pearson r = −0.73), but both simply change over time. Looking at week-to-week changes, no relationship remains. Own data, 16 weeks.</figcaption>
+    </figure>
+    <p><b>2.</b> There is no statistically significant correlation between my food intake and my running speed or distance. This is contrary to my assumption: I always thought that eating more carbohydrates or protein before training would improve my performance. My results show that sports performance has many other influencing factors besides food, such as the type of training (e.g. interval, Dauerlauf (steady-state run) or recovery run). Finding out what drives performance would be an interesting topic for further analysis.</p>
+  </section>
+
+  <section>
+    <h2>Tools</h2>
+    <ul class="chips"><li>SQL</li><li>Python</li><li>scikit-learn</li><li>Statistical tests</li></ul>
+  </section>
+</main>
+
+<footer><div class="wrap">
+  This case uses my own personal data. In the other cases, all data shown is synthetic and does not originate from my employer. &copy; 2026 Hsiangting Lee
+</div></footer>
+</body>
+</html>
