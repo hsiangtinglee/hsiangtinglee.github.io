@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Does My Menstrual Cycle Affect My Running? (Python) – Hsiangting Lee</title>
+<meta name="description" content="Exploratory analysis of my own Garmin running data and period tracking: do my distance, pace and heart rate differ between the follicular and luteal phase, or before my period?">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a class="brand" href="index.html">Hsiangting Lee</a>
+  <nav>
+    <a href="index.html#cases">&larr; All cases</a>
+    <a class="lang" href="de/post-cycle-running.html">DE</a>
+  </nav>
+</div></header>
+
+<main class="wrap">
+  <div class="hero">
+    <h1>Does My Menstrual Cycle Affect My Running?</h1>
+    <p class="role">Exploratory analysis &middot; Python &middot; Statistical tests</p>
+  </div>
+
+  <p><a href="https://en.wikipedia.org/wiki/Stacy_Sims">Dr. Stacy Sims</a> is one of the most renowned researchers on women's health and sport performance in the US. In her book <a href="https://en.wikipedia.org/wiki/Stacy_Sims"><i>Roar</i></a>, she describes how the menstrual cycle and its hormonal changes can affect athletic performance. (By the way, it is a fantastic read for every woman who loves sport. 🙂)</p>
+
+  <p>It is also well known that many women suffer from premenstrual syndrome (PMS), which can affect our sport performance. As a female runner, I was eager to find out whether I can see this effect in my own running data.</p>
+
+  <figure>
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/MenstrualCycle_en.svg" alt="Diagram of the menstrual cycle showing the follicular phase, ovulation and the luteal phase, with hormone levels, body temperature and endometrium thickness" loading="lazy">
+    <figcaption>The menstrual cycle: the follicular phase comes before ovulation, the luteal phase after it. Source: <a href="https://commons.wikimedia.org/wiki/File:MenstrualCycle_en.svg">&ldquo;MenstrualCycle en.svg&rdquo;, Wikimedia Commons</a> (original by Chris 73, adapted by Lyrl), licensed under <a href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a>.</figcaption>
+  </figure>
+
+  <section>
+    <h2>Research questions</h2>
+    <ol>
+      <li>Does my running performance differ between the follicular phase and the luteal phase of my cycle? My hypothesis is that my performance is lower in the luteal phase than in the follicular phase.</li>
+      <li>Does my running performance differ in the premenstrual phase (the few days before my period) compared with the non-premenstrual phase?</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>Data used</h2>
+    <ul>
+      <li>Running data from <a href="https://connect.garmin.com/">Garmin Connect</a></li>
+      <li>Period tracking data</li>
+      <li>8 months of data (February to October 2026)</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Approach</h2>
+    <ol>
+      <li><b>Prepare data:</b>
+        <ul>
+          <li>Clean the data and convert it into usable formats for the calculations (e.g. dates, numbers, days).</li>
+          <li>Calculate the dates of my follicular and luteal phases based on my period.</li>
+        </ul></li>
+      <li><b>Run statistical tests.</b></li>
+      <li><b>Evaluate the results.</b></li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>Findings</h2>
+    <p><b>1.</b> My running distance, pace and average heart rate do not differ significantly between the luteal phase and the follicular phase. This differs from my original assumption.</p>
+    <p><b>2.</b> When I compared my performance in the premenstrual phase (the few days before my period starts) with the non-premenstrual phase, the result was different. The premenstrual phase varies from person to person: some women notice symptoms already 7 days before their period, others 5 or 2 days before.</p>
+    <ul>
+      <li>With <b>5 days</b> as the threshold for the premenstrual phase, I found no significant difference.</li>
+      <li><u>With <b>2 days</b> as the threshold, my running distance and heart rate are significantly lower than in the non-premenstrual phase.</u></li>
+    </ul>
+    <h3>Result with 2 days as the premenstrual threshold</h3>
+    <table>
+      <thead>
+        <tr><th>Metric</th><th>Premenstrual runs</th><th>Other runs</th><th>p-value</th><th>Significant?</th></tr>
+      </thead>
+      <tbody>
+        <tr class="best"><td>Running distance</td><td>5</td><td>90</td><td>0.008</td><td>Yes, lower before my period</td></tr>
+        <tr class="best"><td>Average heart rate</td><td>7</td><td>128</td><td>0.025</td><td>Yes, lower before my period</td></tr>
+        <tr><td>Pace</td><td>7</td><td>129</td><td>0.284</td><td>No</td></tr>
+      </tbody>
+    </table>
+    <div class="notice"><b>How to read this:</b> I compared the runs in the 2 days before my period with all my other runs (Welch's t-test). The <b>p-value</b> shows how likely such a difference would be by pure chance. Below 0.05 is usually called significant. A p-value of 0.008, for example, means the difference is unlikely to be a coincidence. The number of runs differs by metric because some runs have missing values.</div>
+    <p>This is an interesting finding. My premenstrual days are not my best days, so it is fascinating that the data shows a hint of it. However, the number of records in this phase is rather low. That is normal: two days a month leave little room for runs. It will be interesting to investigate further once I have more data.</p>
+  </section>
+
+  <section>
+    <h2>Tools</h2>
+    <ul class="chips"><li>Python</li><li>pandas</li><li>Statistical tests</li></ul>
+  </section>
+</main>
+
+<footer><div class="wrap">
+  This post uses my own personal data. &copy; 2026 Hsiangting Lee
+</div></footer>
+</body>
+</html>

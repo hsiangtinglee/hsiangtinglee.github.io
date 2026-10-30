@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Beeinflusst mein Zyklus mein Laufen? (Python) – Hsiangting Lee</title>
+<meta name="description" content="Explorative Analyse meiner eigenen Garmin-Laufdaten und meines Zyklus-Trackings: Unterscheiden sich Distanz, Tempo und Herzfrequenz zwischen Follikel- und Lutealphase oder vor meiner Periode?">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a class="brand" href="index.html">Hsiangting Lee</a>
+  <nav>
+    <a href="index.html#cases">&larr; Alle Fallstudien</a>
+    <a class="lang" href="../post-cycle-running.html">EN</a>
+  </nav>
+</div></header>
+
+<main class="wrap">
+  <div class="hero">
+    <h1>Beeinflusst mein Zyklus mein Laufen?</h1>
+    <p class="role">Explorative Analyse &middot; Python &middot; Statistische Tests</p>
+  </div>
+
+  <p><a href="https://en.wikipedia.org/wiki/Stacy_Sims">Dr. Stacy Sims</a> ist eine der bekanntesten Forscherinnen zu Frauengesundheit und sportlicher Leistung in den USA. In ihrem Buch <a href="https://en.wikipedia.org/wiki/Stacy_Sims"><i>Roar</i></a> beschreibt sie, wie der Menstruationszyklus und die damit verbundenen hormonellen Veränderungen die sportliche Leistung beeinflussen können. (Übrigens: Das Buch ist grossartig für jede Frau, die Sport liebt. 🙂)</p>
+
+  <p>Es ist ausserdem bekannt, dass viele Frauen unter dem prämenstruellen Syndrom (PMS) leiden, das unsere sportliche Leistung beeinträchtigen kann. Als Läuferin wollte ich unbedingt herausfinden, ob sich dieser Effekt auch in meinen eigenen Laufdaten zeigt.</p>
+
+  <figure>
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/MenstrualCycle_en.svg" alt="Diagramm des Menstruationszyklus mit Follikelphase, Eisprung und Lutealphase sowie Hormonspiegel, Körpertemperatur und Dicke der Gebärmutterschleimhaut" loading="lazy">
+    <figcaption>Der Menstruationszyklus: Die Follikelphase liegt vor dem Eisprung, die Lutealphase danach. Quelle: <a href="https://commons.wikimedia.org/wiki/File:MenstrualCycle_en.svg">&bdquo;MenstrualCycle en.svg&ldquo;, Wikimedia Commons</a> (Original von Chris 73, bearbeitet von Lyrl), Lizenz: <a href="https://creativecommons.org/licenses/by-sa/3.0/deed.de">CC BY-SA 3.0</a>.</figcaption>
+  </figure>
+
+  <section>
+    <h2>Forschungsfragen</h2>
+    <ol>
+      <li>Unterscheidet sich meine Laufleistung zwischen der Follikelphase und der Lutealphase meines Zyklus? Meine Hypothese ist, dass meine Leistung in der Lutealphase niedriger ist als in der Follikelphase.</li>
+      <li>Unterscheidet sich meine Laufleistung in der prämenstruellen Phase (den wenigen Tagen vor meiner Periode) von der Leistung ausserhalb dieser Phase?</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>Daten</h2>
+    <ul>
+      <li>Laufdaten von <a href="https://connect.garmin.com/">Garmin Connect</a></li>
+      <li>Zyklus-Tracking-Daten</li>
+      <li>Daten von 8 Monaten (Februar bis Oktober 2026)</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Vorgehen</h2>
+    <ol>
+      <li><b>Daten aufbereiten:</b>
+        <ul>
+          <li>Daten bereinigen und für die Berechnungen in nutzbare Formate umwandeln (z. B. Datum, Zahlen, Tage).</li>
+          <li>Die Daten meiner Follikel- und Lutealphase anhand meiner Periode berechnen.</li>
+        </ul></li>
+      <li><b>Statistische Tests durchführen.</b></li>
+      <li><b>Ergebnisse auswerten.</b></li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>Ergebnisse</h2>
+    <p><b>1.</b> Meine Laufdistanz, mein Tempo und meine durchschnittliche Herzfrequenz unterscheiden sich zwischen Lutealphase und Follikelphase nicht signifikant. Das weicht von meiner ursprünglichen Annahme ab.</p>
+    <p><b>2.</b> Beim Vergleich der prämenstruellen Phase (der wenigen Tage vor Beginn meiner Periode) mit der Zeit ausserhalb dieser Phase war das Ergebnis anders. Die prämenstruelle Phase ist von Frau zu Frau unterschiedlich: Manche spüren Beschwerden schon 7 Tage vor der Periode, andere 5 oder 2 Tage davor.</p>
+    <ul>
+      <li>Mit <b>5 Tagen</b> als Schwelle für die prämenstruelle Phase fand ich keinen signifikanten Unterschied.</li>
+      <li><u>Mit <b>2 Tagen</b> als Schwelle sind meine Laufdistanz und meine Herzfrequenz signifikant niedriger als ausserhalb der prämenstruellen Phase.</u></li>
+    </ul>
+    <h3>Ergebnis mit 2 Tagen als Schwelle für die prämenstruelle Phase</h3>
+    <table>
+      <thead>
+        <tr><th>Messgrösse</th><th>Prämenstruelle Läufe</th><th>Übrige Läufe</th><th>p-Wert</th><th>Signifikant?</th></tr>
+      </thead>
+      <tbody>
+        <tr class="best"><td>Laufdistanz</td><td>5</td><td>90</td><td>0.008</td><td>Ja, niedriger vor meiner Periode</td></tr>
+        <tr class="best"><td>Durchschnittliche Herzfrequenz</td><td>7</td><td>128</td><td>0.025</td><td>Ja, niedriger vor meiner Periode</td></tr>
+        <tr><td>Tempo</td><td>7</td><td>129</td><td>0.284</td><td>Nein</td></tr>
+      </tbody>
+    </table>
+    <div class="notice"><b>So lesen Sie die Tabelle:</b> Ich habe die Läufe in den 2 Tagen vor meiner Periode mit allen übrigen Läufen verglichen (Welch-t-Test). Der <b>p-Wert</b> zeigt, wie wahrscheinlich ein solcher Unterschied rein zufällig wäre. Werte unter 0.05 gelten üblicherweise als signifikant. Ein p-Wert von 0.008 bedeutet zum Beispiel, dass der Unterschied sehr wahrscheinlich kein Zufall ist. Die Anzahl der Läufe unterscheidet sich je nach Messgrösse, weil bei manchen Läufen Werte fehlen.</div>
+    <p>Das ist ein interessantes Ergebnis. Meine prämenstruellen Tage sind nicht meine besten, deshalb finde ich es spannend, dass die Daten einen Hinweis darauf zeigen. Die Anzahl der Einträge in dieser Phase ist allerdings eher klein. Das ist normal: In zwei Tagen pro Monat gibt es nur wenige Läufe. Es wird interessant sein, das weiter zu untersuchen, sobald ich mehr Daten habe.</p>
+  </section>
+
+  <section>
+    <h2>Tools</h2>
+    <ul class="chips"><li>Python</li><li>pandas</li><li>Statistische Tests</li></ul>
+  </section>
+</main>
+
+<footer><div class="wrap">
+  Dieser Beitrag verwendet meine eigenen persönlichen Daten. &copy; 2026 Hsiangting Lee
+</div></footer>
+</body>
+</html>
